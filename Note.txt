@@ -1,0 +1,81 @@
+V1.0:-
+step 1:- creating the folder Strucher 
+ mkdir -p app/{api,agents,prompts,rag,llm,vector_db,database,services,memory,models,utils}
+ mkdir -p data/{raw,processed,embeddings}
+ mkdir -p tests
+ mkdir -p frontend
+ mkdir -p docs
+ mkdir -p deployment
+
+step 2:-
+Create python Package files in folder 
+touch app/__init__.py
+touch app/api/__init__.py
+touch app/agents/__init__.py
+touch app/prompts/__init__.py
+touch app/rag/__init__.py
+touch app/llm/__init__.py
+touch app/vector_db/__init__.py
+touch app/database/__init__.py
+touch app/services/__init__.py
+touch app/memory/__init__.py
+touch app/models/__init__.py
+touch app/utils/__init__.py
+
+
+step 3:-
+Createing the Root Files
+touch requirements.txt
+touch .env.example
+touch .gitignore
+touch Dockerfile
+touch docker-compose.yml
+touch app/main.py
+touch app/config.py
+
+step 4:-Virtual Environment and run ;- python -m venv .venv , source .venv/bin/activate
+
+step 5:-Install Only Basic Packages and freeze requirements :-
+pip install fastapi uvicorn python-dotenv pydantic loguru
+pip freeze > requirements.txt
+
+step 6:- create configuration 
+mkdir app/config
+touch app/config/__init__.py
+touch app/config/settings.py
+touch app/config/logging_config.py
+touch app/config/llm_config.py
+touch app/config/embedding_config.py
+touch app/config/vector_config.py
+touch app/config/database_config.py
+touch app/config/prompt_config.py
+touch app/config/memory_config.py
+touch app/config/security_config.py
+touch app/config/api_config.py
+
+step 7:- config/settings.py code
+
+step 8:- creating logs folder and logger.py file in utils 
+and code to logger.py and logger_config.py
+
+step 9:- creating new folder called middleware  and add code 
+to api_config.py and cors.py and health.py in router folder
+ 
+step 10:- creating  new folers api/exceptions and add code 
+
+step 11:- creating  new folers api/responses and add code
+
+step 12:-creating  new folers api/core and add code
+
+step 13:-creating  new folers api/dependencies and add code
+
+step 14:-creating  new folers app/shared and add code
+
+Current changes so far:
+- Created repository structure for `app`, `data`, `tests`, `frontend`, `docs`, and `deployment`.
+- Created package initialization files in `app` and its subfolders.
+- Added root files: `requirements.txt`, `.env.example`, `.gitignore`, `Dockerfile`, `docker-compose.yml`, and `app/main.py`.
+- Added configuration modules under `app/config` for settings, logging, LLM, embeddings, vector DB, database, prompts, memory, security, and API.
+- Added logging utility support and middleware support.
+- Added API router scaffolding, exception handling, response classes, and dependency modules.
+- Added shared application utilities and helper folders.
