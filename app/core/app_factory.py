@@ -27,6 +27,14 @@ from app.api.routers.health import router as health_router
 from app.api.routers.root import router as root_router
 from app.api.routers.version import router as version_router
 
+from app.api.middleware.request_id import (
+    RequestIDMiddleware
+)
+
+from app.api.middleware.request_logger import (
+    RequestLoggingMiddleware
+)
+
 
 def create_app() -> FastAPI:
 
@@ -53,6 +61,8 @@ def create_app() -> FastAPI:
         license_info=api_config.LICENSE,
 
     )
+    app.add_middleware(RequestIDMiddleware)
+    app.add_middleware(RequestLoggingMiddleware)
 
     # ------------------------
     # Middleware

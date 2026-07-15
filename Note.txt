@@ -79,3 +79,19 @@ Current changes so far:
 - Added logging utility support and middleware support.
 - Added API router scaffolding, exception handling, response classes, and dependency modules.
 - Added shared application utilities and helper folders.
+
+
+## Dependency Management
+
+Whenever a new library is introduced:
+
+1. Install the library.
+2. Verify installation.
+3. Update requirements.txt.
+4. Commit changes.
+
+Commands:
+
+pip install <library>
+
+pip freeze > requirements.txt
