@@ -1,41 +1,53 @@
 """
 Purpose:
 --------
-Defines business workflows.
+Maintains conversation context.
 
-Examples:
----------
-- Refund Workflow
-- Order Tracking Workflow
-- Billing Workflow
-- Recommendation Workflow
+Future:
+-------
+Redis
+PostgreSQL
+LangGraph Memory
 """
 
 
-class WorkflowManager:
+from app.agents.base.base_agent import (
+    BaseAgent
+)
 
-    WORKFLOWS = {
 
-        "refund": [
+class ConversationAgent(
+    BaseAgent
+):
 
-            "intent",
+    def execute(
+        self,
+        state
+    ):
 
-            "retrieval",
+        history = state.get(
+            "history",
+            []
+        )
 
-            "response",
+        history.append(
 
-            "escalation"
+            {
 
-        ],
+                "query": state["query"],
 
-        "order": [
+                "intent": state.get(
+                    "intent"
+                ),
 
-            "intent",
+                "response": state.get(
+                    "response"
+                )
 
-            "retrieval",
+            }
 
-            "response"
+        )
 
-        ]
+        state["history"] = history
 
-    }
+        return state

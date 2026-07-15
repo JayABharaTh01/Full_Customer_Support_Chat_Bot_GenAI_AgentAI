@@ -33,20 +33,19 @@ class AgentRouter:
     def __init__(self):
 
         self.agents = [
-
             IntentAgent(),
 
             SentimentAgent(),
-
+            
+            ConversationAgent(),
+            
             RetrievalAgent(),
-
+            
             ResponseAgent(),
-
-            EscalationAgent(),
-
-            ConversationAgent()
-
-        ]
+            
+            EscalationAgent()
+            
+            ]
 
     def run(
         self,

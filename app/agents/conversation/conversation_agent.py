@@ -1,26 +1,15 @@
 """
 Purpose:
 --------
-Maintains conversation context between customer interactions.
+Maintains conversation context.
 
-Responsibilities:
------------------
-1. Track previous messages.
-2. Store session history.
-3. Resolve references.
-4. Support multi-turn conversations.
-
-Examples:
----------
-Customer:
-Where is my order?
-
-Customer:
-Can I return it?
-
-Conversation Agent:
-"It" -> Order
+Future:
+-------
+Redis
+PostgreSQL
+LangGraph Memory
 """
+
 
 from app.agents.base.base_agent import (
     BaseAgent
@@ -36,24 +25,27 @@ class ConversationAgent(
         state
     ):
 
-        # Future:
-        # Retrieve conversation history
-        # from Redis or SQL.
-
         history = state.get(
             "history",
             []
         )
 
         history.append(
-            # state["query"]
 
-            "query":state["query"]
+            {
 
-            "intent":state["intent"]
+                "query": state["query"],
 
-            "response":state["response"]
-            
+                "intent": state.get(
+                    "intent"
+                ),
+
+                "response": state.get(
+                    "response"
+                )
+
+            }
+
         )
 
         state["history"] = history
