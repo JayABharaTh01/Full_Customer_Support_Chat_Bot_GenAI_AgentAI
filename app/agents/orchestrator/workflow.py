@@ -16,38 +16,91 @@ from app.agents.base.base_agent import (
 )
 
 
-class ConversationAgent(
-    BaseAgent
-):
+# class ConversationAgent(
+#     BaseAgent
+# ):
 
-    def execute(
-        self,
-        state
-    ):
+#     def execute(
+#         self,
+#         state
+#     ):
 
-        history = state.get(
-            "history",
-            []
-        )
+#         history = state.get(
+#             "history",
+#             []
+#         )
 
-        history.append(
+#         history.append(
 
-            {
+#             {
 
-                "query": state["query"],
+#                 "query": state["query"],
 
-                "intent": state.get(
-                    "intent"
-                ),
+#                 "intent": state.get(
+#                     "intent"
+#                 ),
 
-                "response": state.get(
-                    "response"
-                )
+#                 "response": state.get(
+#                     "response"
+#                 )
 
-            }
+#             }
 
-        )
+#         )
 
-        state["history"] = history
+#         state["history"] = history
 
-        return state
+#         return state
+
+"""
+Purpose:
+--------
+Defines business workflows.
+"""
+
+
+class WorkflowManager:
+
+    WORKFLOWS = {
+
+        "refund": [
+
+            "intent",
+
+            "sentiment",
+
+            "conversation",
+
+            "retrieval",
+
+            "response",
+
+            "escalation"
+
+        ],
+
+        "order": [
+
+            "intent",
+
+            "conversation",
+
+            "retrieval",
+
+            "response"
+
+        ],
+
+        "recommendation": [
+
+            "intent",
+
+            "conversation",
+
+            "retrieval",
+
+            "response"
+
+        ]
+
+    }

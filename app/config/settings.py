@@ -40,6 +40,8 @@ class Settings(BaseSettings):
     OPENAI_API_KEY: str = Field(default="")
     OPENAI_MODEL: str = "gpt-4o-mini"
 
+    HF_TOKEN: str | None = None
+
     # Future
     BEDROCK_MODEL: str = ""
     BEDROCK_REGION: str = ""
@@ -108,7 +110,7 @@ class Settings(BaseSettings):
     SECRET_KEY: str = "change_me"
 
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=".env.example",
         case_sensitive=True,
         extra="ignore",
     )
