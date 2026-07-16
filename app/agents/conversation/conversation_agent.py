@@ -10,9 +10,12 @@ PostgreSQL
 LangGraph Memory
 """
 
-
 from app.agents.base.base_agent import (
     BaseAgent
+)
+
+from app.memory.memory_manager import (
+    MemoryManager
 )
 
 
@@ -20,34 +23,47 @@ class ConversationAgent(
     BaseAgent
 ):
 
+    def __init__(self):
+
+        self.memory = MemoryManager()
+
     def execute(
         self,
         state
     ):
 
-        history = state.get(
-            "history",
-            []
+        message = {
+
+            "query": state["query"],
+
+            "intent": state.get(
+                "intent"
+            ),
+
+            "response": state.get(
+                "response"
+            )
+
+        }
+
+        # Save message in memory
+        self.memory.save(
+
+            state["session_id"],
+
+            message
+
         )
 
-        history.append(
+        # Retrieve conversation history
+        state["history"] = (
 
-            {
+            self.memory.load(
 
-                "query": state["query"],
+                state["session_id"]
 
-                "intent": state.get(
-                    "intent"
-                ),
-
-                "response": state.get(
-                    "response"
-                )
-
-            }
+            )
 
         )
-
-        state["history"] = history
 
         return state
