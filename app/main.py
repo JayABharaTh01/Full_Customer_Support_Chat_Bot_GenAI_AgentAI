@@ -77,7 +77,6 @@
 # #temp
 # for route in app.routes:
 #     print(route.path)
-
 """
 Application Entry Point
 """
@@ -87,9 +86,3 @@ from app.core.app_factory import (
 )
 
 app = create_app()
-
-
-# Debug Routes
-for route in app.routes:
-
-    print(route.path)
